@@ -1,4 +1,4 @@
-// ALL new should be changed to new Three.OrbitControls (like three.scene)
+// ALL new should be changed to new THREE.OrbitControls (like three.scene)
 // Import all libraries and reference in index file
 // Use recorded data to not kill computer
 // Only have 1 browser window open to also not kill computer
@@ -48,7 +48,7 @@ function init() {
 	var positions = [];
 	var colors = [];
 
-	var points = GeometryUtils.hilbert3D(new THREE.Vector3(0, 0, 0), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7);
+	var points = new THREE.GeometryUtils.hilbert3D(new THREE.Vector3(0, 0, 0), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7);
 
 	var spline = new THREE.CatmullRomCurve3(points);
 	var divisions = Math.round(12 * points.length);
@@ -70,11 +70,11 @@ function init() {
 
 	// Line2 ( LineGeometry, LineMaterial )
 
-	var geometry = new Three.LineGeometry();
+	var geometry = new THREE.LineGeometry();
 	geometry.setPositions(positions);
 	geometry.setColors(colors);
 
-	matLine = new Three.LineMaterial({
+	matLine = new THREE.LineMaterial({
 
 		color: 0xffffff,
 		linewidth: 5, // in pixels
@@ -84,7 +84,7 @@ function init() {
 
 	});
 
-	line = new Three.Line2(geometry, matLine);
+	line = new THREE.Line2(geometry, matLine);
 	line.computeLineDistances();
 	line.scale.set(1, 1, 1);
 	scene.add(line);
@@ -116,7 +116,7 @@ function init() {
 	window.addEventListener('resize', onWindowResize, false);
 	onWindowResize();
 
-	stats = new Three.Stats();
+	stats = new Stats();
 	document.body.appendChild(stats.dom);
 
 	initGui();
@@ -183,7 +183,7 @@ function animate() {
 
 function initGui() {
 
-	gui = new Three.GUI();
+	gui = new dat.GUI();
 
 	var param = {
 		'line type': 0,
